@@ -1,36 +1,74 @@
-# Proyek-TRO
-# Optimasi Jadwal Shift Karyawan pada Restoran 24 Jam
+#    Proyek TRO
+# Optimasi Jadwal Shift Karyawan Restoran 24 Jam
 
-Restoran ini beroperasi selama 24 jam setiap hari dan membagi waktu kerja menjadi empat shift, yaitu shift pagi (P1), shift siang (S1), shift sore (S2), dan shift malam (M1). Setiap shift memiliki kebutuhan minimal jumlah karyawan serta tingkat upah per jam yang berbeda. Tujuan dari model ini adalah menentukan jumlah optimal karyawan yang bekerja pada setiap shift agar total biaya gaji harian menjadi minimum, dengan tetap memenuhi kebutuhan operasional restoran selama 24 jam.
+Proyek ini bertujuan untuk menganalisis dan mengoptimalkan pembagian shift karyawan menggunakan metode riset operasional guna meminimalkan biaya operasional harian di sebuah restoran yang beroperasi 24 jam.
 
-Untuk membangun model matematis, didefinisikan variabel keputusan sebagai berikut:
-- x₁ = jumlah karyawan yang bekerja pada shift pagi (P1)
-- x₂ = jumlah karyawan yang bekerja pada shift siang (S1)
-- x₃ = jumlah karyawan yang bekerja pada shift sore (S2)
-- x₄ = jumlah karyawan yang bekerja pada shift malam (M1)
+1. Penjelasan Konteks Kasus
 
-Fungsi tujuan dari model ini adalah untuk meminimalkan total biaya tenaga kerja per hari:
-Min Z = 800.000x₁ + 1.200.000x₂ + 1.200.000x₃ + 840.000x₄
+Restoran ini membagi waktu kerja menjadi empat shift dengan kebutuhan minimal karyawan dan tingkat upah yang berbeda:
 
-dengan keterangan:
-- x₁: jumlah tenaga kerja shift pagi  
-- x₂: jumlah tenaga kerja shift siang  
-- x₃: jumlah tenaga kerja shift sore  
-- x₄: jumlah tenaga kerja shift malam  
+Shift Pagi (P1): Kebutuhan minimal 4 orang.
 
-Tujuan dari fungsi ini adalah untuk mendapatkan kombinasi jumlah tenaga kerja pada setiap shift yang menghasilkan biaya total paling rendah tanpa mengganggu kebutuhan operasional harian.
+Shift Siang (S1): Kebutuhan minimal 6 orang.
 
-Agar solusi yang diperoleh realistis dan sesuai kebutuhan, ditetapkan beberapa kendala sebagai berikut:
-1. Kebutuhan minimum karyawan per shift  
-   x₁ ≥ 4, x₂ ≥ 6, x₃ ≥ 5, x₄ ≥ 3  
-2. Total jumlah karyawan yang tersedia per hari  
-   x₁ + x₂ + x₃ + x₄ = 18  
-3. Non-negativitas variabel keputusan  
-   xⱼ ≥ 0 untuk j = 1, 2, 3, 4  
+Shift Sore (S2): Kebutuhan minimal 5 orang.
 
-Repository ini berisi hasil pembuatan model optimasi untuk menentukan jadwal shift karyawan restoran 24 jam. File yang terdapat dalam repository ini meliputi:
-- Model_Optimasi_Shift_Karyawan.docx : berisi penjelasan lengkap studi kasus dan formulasi model.  
-- TRO.FAR.xlsx : berisi data kebutuhan karyawan dan biaya per shift yang digunakan dalam model.  
+Shift Malam (M1): Kebutuhan minimal 3 orang.
 
-Penyelesaian model (pencarian solusi optimal dan analisis hasil) akan ditambahkan pada tahap berikutnya.
+Total ketersediaan staf tetap: 18 karyawan.
 
+2. Formulasi Matematika
+
+A. Variabel Keputusan
+
+$x_1$ = jumlah karyawan shift pagi (P1)
+
+$x_2$ = jumlah karyawan shift siang (S1)
+
+$x_3$ = jumlah karyawan shift sore (S2)
+
+$x_4$ = jumlah karyawan shift malam (M1)
+
+B. Fungsi Tujuan (Minimasi Biaya)
+
+$$Min Z = 800.000x_1 + 1.200.000x_2 + 1.200.000x_3 + 840.000x_4$$
+
+C. Kendala (Constraints)
+
+Kebutuhan Minimum: $x_1 \ge 4, x_2 \ge 6, x_3 \ge 5, x_4 \ge 3$
+
+Kapasitas SDM: $x_1 + x_2 + x_3 + x_4 = 18$
+
+Non-negativitas: $x_j \ge 0$
+
+3. Hasil Optimasi & Perbandingan Software
+
+Fitur
+Excel Solver
+Python (SciPy/PuLP)
+
+Hasil Optimal
+$x_1=4, x_2=6, x_3=5, x_4=3$
+$x_1=4, x_2=6, x_3=5, x_4=3$
+
+Total Biaya (Z)
+Rp18.920.000
+Rp18.920.000
+
+Interpretasi: Hasil dari kedua tools menunjukkan angka yang identik, memvalidasi bahwa titik optimal berada pada batas minimum kebutuhan setiap shift.
+
+4. Analisis Eksploratif (Skenario)
+
+Upah Malam +20%: Jika upah naik jadi Rp1.008.000, biaya total menjadi Rp19.424.000.
+
+Lonjakan Siang: Menambah 2 karyawan di siang hari akan membengkakkan biaya karena upah siang tertinggi.
+
+Kelebihan Staf: Jika staf jadi 20 orang, model menyarankan tambah di shift Pagi ($x_1$) karena termurah.
+
+5. Rekomendasi Strategis
+
+Efisiensi: Jangan tambah personil di shift Siang/Sore jika tidak mendesak.
+
+Persiapan: Lakukan persiapan bahan makanan di shift malam untuk menghemat biaya tenaga kerja.
+
+Otomasi: Gunakan script Python untuk penyesuaian jadwal jika ada perubahan upah di masa depan.
